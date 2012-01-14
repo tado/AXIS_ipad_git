@@ -14,7 +14,7 @@ void faceExchangeController::setup(){
 	//iPhoneAlerts will be sent to this.
 	ofxiPhoneAlerts.addListener(this);
 	
-	ofSetOrientation(OF_ORIENTATION_90_LEFT);
+	ofSetOrientation(OF_ORIENTATION_90_RIGHT);
 	
 	ofBackground(0);
     
