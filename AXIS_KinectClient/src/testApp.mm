@@ -32,6 +32,8 @@ void testApp::draw(){
 //	string buf;
 //	buf = "sending osc messages to" + string( HOST ) + ofToString( PORT );
 //	ofDrawBitmapString( buf, 10, 20 );
+	
+	//draw box
 	glEnable(GL_DEPTH_TEST);
 	ofNoFill();
 	ofSetHexColor(0xFFFFFF);
@@ -46,6 +48,7 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::exit(){
+	//send exit message via OSC
 	ofxOscMessage m;
 	m.setAddress( "/app/init" );
 	m.addIntArg( 2 );
