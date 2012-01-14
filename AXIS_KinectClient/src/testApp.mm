@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 	ofSetFrameRate(60);
-	ofSetOrientation(OF_ORIENTATION_90_RIGHT);
+	ofSetOrientation(OF_ORIENTATION_90_LEFT);
 	ofBackgroundHex(0x000000);
 	
 	// open an outgoing connection to HOST:PORT
