@@ -15,6 +15,10 @@ void testApp::setup(){
 	m.setAddress( "/app/init" );
 	m.addIntArg( 1 );
 	sender.sendMessage( m );
+	
+	ofSetLineWidth(2);
+	ofEnableSmoothing();
+	light.enable();
 }
 
 //--------------------------------------------------------------
@@ -24,10 +28,20 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-	// display instructions
-	string buf;
-	buf = "sending osc messages to" + string( HOST ) + ofToString( PORT );
-	ofDrawBitmapString( buf, 10, 20 );
+//	// display instructions
+//	string buf;
+//	buf = "sending osc messages to" + string( HOST ) + ofToString( PORT );
+//	ofDrawBitmapString( buf, 10, 20 );
+	glEnable(GL_DEPTH_TEST);
+	ofNoFill();
+	ofSetHexColor(0xFFFFFF);
+	ofPushMatrix();
+	ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
+	ofScale(scale, scale, scale);
+	ofRotateX(-rotY / 2.0);
+	ofRotateY(rotX / 1.5);
+	ofBox(0, 0, 0, 100);
+	ofPopMatrix();
 }
 
 //--------------------------------------------------------------
@@ -52,8 +66,8 @@ void testApp::touchMoved(ofTouchEventArgs &touch){
 	
 	if (touch.numTouches == 1) {
 		
-		float rotX = (touch.x - (float)ofGetWidth()/2.0) / 4.0;
-		float rotY = (touch.y - (float)ofGetHeight()/2.0) / 4.0;
+		rotX = (touch.x - (float)ofGetWidth()/2.0) / 4.0;
+		rotY = (touch.y - (float)ofGetHeight()/2.0) / 4.0;
 		
 		ofxOscMessage m;
 		m.setAddress( "/touch/position" );
@@ -104,6 +118,9 @@ void testApp::touchDoubleTap(ofTouchEventArgs &touch){
 	mc.setAddress( "/touch/scale" );
 	mc.addFloatArg(2.5);
 	sender.sendMessage( mc );
+	
+	rotX = rotY = 0;
+	scale = 2.5;
 }
 
 //--------------------------------------------------------------

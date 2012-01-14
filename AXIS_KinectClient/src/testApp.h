@@ -33,5 +33,9 @@ public:
 	float scale;
 	float targetScale;
 	ofPoint targetRot;
+	ofEasyCam cam;
+	float rotX;
+	float rotY;
+	ofLight light;
 };
 
