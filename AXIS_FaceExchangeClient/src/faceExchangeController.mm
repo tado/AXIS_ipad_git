@@ -31,10 +31,10 @@ void faceExchangeController::setup(){
         
         char * imageName = new char [255];
         sprintf(imageName,"images/%03d.png",i+1);
-        
-        faceImages[i].loadImage(imageName);
+		faceImages[i].loadImage(imageName);
     }
     
+	selectNum = 0;
 }
 
 //--------------------------------------------------------------
@@ -48,15 +48,21 @@ void faceExchangeController::draw(){
     ofSetColor(255, 255, 255);
     
     
-    for (int i =0; i < num_face; i++) {
-        
+    for (int i =0; i < num_face; i++) {  
         float imageX = i * size_img + gap;
-        
         faceImages[i].draw(imageX, gap);
-        
     }
     ofSetColor(255, 0, 0);
-    ofDrawBitmapString("test" , 10, 20);
+	
+	if (selectNum > 0) {
+		ofNoFill();
+		ofSetLineWidth(2);
+		ofRect((selectNum - 1) * size_img + gap, gap,
+			   faceImages[selectNum - 1].width, faceImages[selectNum - 1].height);
+		ofFill();
+	}
+	
+    //ofDrawBitmapString("test" , 10, 20);
     
 }
 
@@ -97,23 +103,27 @@ void faceExchangeController::touchUp(ofTouchEventArgs &touch){
                 //send 1  
                 printf("1\n");
                 num.addIntArg(0);
-                
-            }else if(touch.x >=gap + size_img && touch.x < size_img * 2){
+				selectNum = 1;
+			}else if(touch.x >=gap + size_img && touch.x < size_img * 2){
                 //send 2 
                 printf("2\n");
                 num.addIntArg(1);
+				selectNum = 2;   
             }else if(touch.x >=gap + size_img *2 && touch.x < size_img * 3){
                 //send 3 
                 printf("3\n");
                 num.addIntArg(2);
+				selectNum = 3;
             }else if(touch.x >=gap + size_img *3 && touch.x < size_img * 4){
                 //send 4 
                 printf("4\n");
                 num.addIntArg(3);
+				selectNum = 4;
             }else if(touch.x >=gap + size_img *4 && touch.x < size_img * 5){
                 //send 5 
                 printf("5\n");
                 num.addIntArg(4);
+				selectNum = 5;
             }
             
         }

@@ -30,7 +30,7 @@ public:
     
     ofxOscSender sender;
     ofImage * faceImages;
-
+	int selectNum;
 
 };
 
