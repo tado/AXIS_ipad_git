@@ -18,7 +18,16 @@ void faceExchangeController::setup(){
 	
 	ofBackground(0);
     
-    sender.setup( HOST, PORT );
+	// open an outgoing connection to HOST:PORT
+	//sender.setup( HOST, PORT );
+	
+	//get ip address from Settings.bundle
+	string host;
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *addr = [prefs stringForKey:@"host_ip"];
+    if (addr) host = [addr UTF8String];
+	sender.setup( host, PORT );
+	cout << "send OSC, host = " << host << ", port = " << PORT << endl;
     
 	ofxOscMessage m;
 	m.setAddress( "/app/init" );
